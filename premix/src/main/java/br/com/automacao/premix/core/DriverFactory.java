@@ -22,6 +22,11 @@ public class DriverFactory {
 	private static void createDriver() {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("PlatformName", "Android");
+		capabilities.setCapability("deviceName", "SM-J500M");
+		capabilities.setCapability("automator", "uiautomator2");
+		capabilities.setCapability("appPackage", "br.com.topinformation.premix");
+		capabilities.setCapability("appActivity", "br.com.topinformation.premix.main.view.activity.SplashActivity_");
+		capabilities.setCapability("noReset", "true"); 
 		try {
 			driver = new AndroidDriver<MobileElement>(new URL("http://localhost:4723/wd/hub"), capabilities);
 		} catch (MalformedURLException e) {
@@ -31,10 +36,13 @@ public class DriverFactory {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
 
-	public void killDriver() {
+	public static void killDriver() {
 		if (driver != null) {
 			driver.quit();
 			driver = null;
 		}
+		
 	}
+	
 }
+
