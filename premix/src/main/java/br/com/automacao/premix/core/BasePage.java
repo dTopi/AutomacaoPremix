@@ -4,6 +4,7 @@ import static br.com.automacao.premix.core.DriverFactory.getDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.spec.EncodedKeySpec;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -42,6 +43,10 @@ WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
 			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
 			test.log(LogStatus.FAIL, img);
 			test.log(LogStatus.FAIL, e.getMessage());
+			e.printStackTrace();
+			FinalizaClasse();
+			DriverFactory.killDriver();
+			report.endTest(test);
 		}
 
 	}
@@ -69,6 +74,10 @@ WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
 			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
 			test.log(LogStatus.PASS, img);
 			test.log(LogStatus.FAIL, e.getMessage());
+			e.printStackTrace();
+			FinalizaClasse();
+			DriverFactory.killDriver();
+			report.endTest(test);
 		}
 
 	}
@@ -97,13 +106,17 @@ WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
 			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
 			test.log(LogStatus.FAIL, img);
 			test.log(LogStatus.FAIL, e.getMessage());
-			
+			e.printStackTrace();
+			FinalizaClasse();
+			DriverFactory.killDriver();
+			report.endTest(test);
 		}
 
 	}
 
 	public String get(By by, String nome) {
 		String texto = null;
+		
 		try {
 			texto = getDriver().findElement(by).getText();
 			test.log(LogStatus.PASS, nome);
@@ -120,42 +133,50 @@ WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
 			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
 			try {
 				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
+				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
-			test.log(LogStatus.PASS, img);
+			test.log(LogStatus.FAIL, img);
 			test.log(LogStatus.FAIL, e.getMessage());
+			e.printStackTrace();
+			FinalizaClasse();
+			DriverFactory.killDriver();
+			report.endTest(test);
 			
 		}
 		return texto;
 	}
 
-	public void validacao(By by, String nome1, String nome2) {
+	public void validacao(By by, String campo, String nome) {
 		try {
-			Assert.assertTrue(nome2, true);
-			test.log(LogStatus.PASS, nome1);
+			Assert.assertTrue(nome, true);
+			test.log(LogStatus.PASS, nome);
 			test.log(LogStatus.PASS, "Passed");
 			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome1 + ".png"));
-			String img = test.addScreenCapture("..\\Screenshots\\" + nome1 + ".png");
+			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
+			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
 			test.log(LogStatus.PASS, img);
 		} catch (Exception e) {
-			test.log(LogStatus.FAIL, nome1);
+			test.log(LogStatus.FAIL, nome);
 			test.log(LogStatus.FAIL, "FAIL");
 			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
 			try {
-				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome1 + ".png"));
+				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
 				;
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			String img = test.addScreenCapture("..\\Screenshots\\" + nome1 + ".png");
+			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
 			test.log(LogStatus.FAIL, img);
 			test.log(LogStatus.FAIL, e.getMessage());
-			
+			e.printStackTrace();
+			FinalizaClasse();
+			DriverFactory.killDriver();
+			report.endTest(test);
 		}
 
 	}
@@ -185,6 +206,10 @@ WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
 			String img = test.addScreenCapture("..\\Screenshots\\" + btn + ".png");
 			test.log(LogStatus.FAIL, img);
 			test.log(LogStatus.FAIL, e.getMessage());
+			e.printStackTrace();
+			FinalizaClasse();
+			DriverFactory.killDriver();
+			report.endTest(test);
 		}
 		}
 		public void validacaoCampoVazio(String nome1, String nome2) {
@@ -210,7 +235,10 @@ WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
 				String img = test.addScreenCapture("..\\Screenshots\\" + nome1 + ".png");
 				test.log(LogStatus.FAIL, img);
 				test.log(LogStatus.FAIL, e.getMessage());
-				
+				e.printStackTrace();
+				FinalizaClasse();
+				DriverFactory.killDriver();
+				report.endTest(test);
 			}
 	}
 }

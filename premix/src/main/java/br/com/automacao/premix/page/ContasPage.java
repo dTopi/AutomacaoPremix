@@ -3,6 +3,7 @@ package br.com.automacao.premix.page;
 import org.openqa.selenium.By;
 
 import br.com.automacao.premix.core.BasePage;
+import br.com.automacao.premix.core.DriverFactory;
 
 public class ContasPage extends BasePage {
 	/*
@@ -14,6 +15,10 @@ public class ContasPage extends BasePage {
 	public String getRazaosocial() {
 		String rzSocial = null;
 		rzSocial = get(By.id("br.com.topinformation.premix:id/tv_name_account"), "Get Razao Social");
+		if(rzSocial == null)
+		{
+			DriverFactory.killDriver();
+		}
 		return rzSocial;
 
 	}
@@ -24,8 +29,8 @@ public class ContasPage extends BasePage {
 		return nomeFazenda;
 	}
 
-	public void validarRazaoSocial(String nome) {
-		validacao(By.id("br.com.topinformation.premix:id/tv_name_account"), "Validação se trouxe razao social", nome);
+	public void validarResultadoBusca(String campo, String nome) {
+		validacao(By.id("br.com.topinformation.premix:id/tv_name_account"), campo, nome);
 	}
 
 	public void clickBtnPesquisar() {

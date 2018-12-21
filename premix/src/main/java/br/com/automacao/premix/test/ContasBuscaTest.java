@@ -19,34 +19,34 @@ public class ContasBuscaTest extends BaseTest {
 	
 	@Test
 	public void busscaPorRazaoSocial(){
-	statusReport("Teste de busca Tela Conta","Busca por Razão Social");
+	statusReport("Teste de busca Tela ContaRazoSocial","Busca por Razão Social");
 	inicio.clickBtnDrawer();
 	drawer.clickContas();
-	pesquisar.setTxtPesquisar("Paulo");
+	pesquisar.setTxtPesquisar("AAA");
 	contas.clickBtnPesquisar();
 	String RazaoSocial = contas.getRazaosocial();
-	contas.validarRazaoSocial(RazaoSocial);
+	contas.validarResultadoBusca("Razao Social", RazaoSocial);
 	
 	}
 	
 	@Test
 	public void searchNomeFazenda(){
-		statusReport("Teste de busca Tela Conta","Busca por Nome da Fazenda");
+		statusReport("Teste de busca Tela ContaNomeFazenda","Busca por Nome da Fazenda");
 		inicio.clickBtnDrawer();
 		drawer.clickContas();
-		pesquisar.setTxtPesquisar("Vanzin");
+		pesquisar.setTxtPesquisar("AAA");
 		contas.clickBtnPesquisar();
 		String NomeDaFazenda = contas.getNomeFazenda();
-		contas.validarRazaoSocial(NomeDaFazenda);
+		contas.validarResultadoBusca("Nome Fazenda", NomeDaFazenda);
 		//alenquer
 	}
 		
 	@Test
 	public void searchRazaoSocialInexistente(){
-		statusReport("Teste de busca Tela Conta","Busca com dados inexistentes.");
+		statusReport("Teste de busca Tela ContaContainexistente","Busca com dados inexistentes.");
 		inicio.clickBtnDrawer();
 		drawer.clickContas();
-		pesquisar.setTxtPesquisar("Aaa");
+		pesquisar.setTxtPesquisar("Paulo");
 		contas.clickBtnPesquisar();
 		contas.validarBuscaVazia();
 		

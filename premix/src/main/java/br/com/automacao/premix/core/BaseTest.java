@@ -12,7 +12,7 @@ public class BaseTest {
 	WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 10);
 
 	public static void statusReport(String teste, String name) {
-		report = new ExtentReports(System.getProperty("user.dir") + "\\target\\Reports\\" + teste + ".html", false);
+		report = new ExtentReports(System.getProperty("user.dir") + "\\target\\Reports\\" + teste + ".html");
 		test = report.startTest(name);
 	}
 
