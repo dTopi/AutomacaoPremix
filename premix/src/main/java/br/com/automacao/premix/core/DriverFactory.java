@@ -22,7 +22,7 @@ public class DriverFactory {
 	private static void createDriver() {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("PlatformName", "Android");
-		capabilities.setCapability("deviceName", "SM-J500M");
+		capabilities.setCapability("deviceName", "emulator-5554");
 		capabilities.setCapability("automator", "uiautomator2");
 		capabilities.setCapability("appPackage", "br.com.topinformation.premix");
 		capabilities.setCapability("appActivity", "br.com.topinformation.premix.main.view.activity.SplashActivity_");
