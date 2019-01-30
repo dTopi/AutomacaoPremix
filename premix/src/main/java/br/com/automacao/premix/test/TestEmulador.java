@@ -1,5 +1,8 @@
 package br.com.automacao.premix.test;
 
-public class TestEmulador {
+import br.com.automacao.premix.core.BaseTest;
+
+public class TestEmulador extends BaseTest{
+	
 
 }
