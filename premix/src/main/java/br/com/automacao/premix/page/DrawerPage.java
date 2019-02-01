@@ -8,6 +8,9 @@ public class DrawerPage extends BasePage {
 		clickPorTexto("Início", "Click Inicio");
 
 	}
+	public void cllickOutraAlterantiva(){
+		clickAce("Navigate up");
+	}
 
 	public void clickCompromissos() {
 		clickPorTexto("Compromissos", "Click compromissos");

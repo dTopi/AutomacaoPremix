@@ -19,8 +19,9 @@ import io.appium.java_client.android.AndroidDriver;
 import junit.framework.Assert;
 
 public class BasePage extends BaseTest {
-WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
+	WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
 
+	//Set
 	public void set(By by, String texto, String nome) {
 		try {
 			getDriver().findElement(by).sendKeys(texto);
@@ -50,7 +51,8 @@ WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
 		}
 
 	}
-
+	
+	//Click
 	public void clickPorTexto(String texto, String nome) {
 		try {
 			getDriver().findElement(By.xpath("//*[@text='" + texto + "']")).click();
@@ -73,105 +75,6 @@ WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
 			}
 			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
 			test.log(LogStatus.PASS, img);
-			test.log(LogStatus.FAIL, e.getMessage());
-			e.printStackTrace();
-			FinalizaClasse();
-			DriverFactory.killDriver();
-			report.endTest(test);
-		}
-
-	}
-
-	public void click(By by, String nome) {
-		try {
-			getDriver().findElement(by).click();
-			getDriver().manage().timeouts().implicitlyWait(05, TimeUnit.SECONDS);
-			test.log(LogStatus.PASS, nome);
-			test.log(LogStatus.PASS, "Passed");
-			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
-			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
-			test.log(LogStatus.PASS, img);
-		} catch (Exception e) {
-			test.log(LogStatus.FAIL, nome);
-			test.log(LogStatus.FAIL, "FAIL");
-			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
-			try {
-				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
-				;
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
-			test.log(LogStatus.FAIL, img);
-			test.log(LogStatus.FAIL, e.getMessage());
-			e.printStackTrace();
-			FinalizaClasse();
-			DriverFactory.killDriver();
-			report.endTest(test);
-		}
-
-	}
-
-	public String get(By by, String nome) {
-		String texto = null;
-		
-		try {
-			texto = getDriver().findElement(by).getText();
-			test.log(LogStatus.PASS, nome);
-			test.log(LogStatus.PASS, "Informação Recuperada: " + texto);
-			test.log(LogStatus.PASS, "Passed");
-			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
-			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
-			test.log(LogStatus.PASS, img);
-
-		} catch (Exception e) {
-			test.log(LogStatus.FAIL, nome);
-			test.log(LogStatus.FAIL, "FAIL");
-			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
-			try {
-				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
-				
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
-			test.log(LogStatus.FAIL, img);
-			test.log(LogStatus.FAIL, e.getMessage());
-			e.printStackTrace();
-			FinalizaClasse();
-			DriverFactory.killDriver();
-			report.endTest(test);
-			
-		}
-		return texto;
-	}
-
-	public void validacao(By by, String campo, String nome) {
-		try {
-			Assert.assertTrue(nome, true);
-			test.log(LogStatus.PASS, nome);
-			test.log(LogStatus.PASS, "Passed");
-			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
-			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
-			test.log(LogStatus.PASS, img);
-		} catch (Exception e) {
-			test.log(LogStatus.FAIL, nome);
-			test.log(LogStatus.FAIL, "FAIL");
-			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
-			try {
-				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
-				;
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
-			test.log(LogStatus.FAIL, img);
 			test.log(LogStatus.FAIL, e.getMessage());
 			e.printStackTrace();
 			FinalizaClasse();
@@ -211,34 +114,172 @@ WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
 			DriverFactory.killDriver();
 			report.endTest(test);
 		}
-		}
-		public void validacaoCampoVazio(String nome1, String nome2) {
-			try {
-				Assert.assertEquals(nome1, nome2);
-				test.log(LogStatus.PASS, nome1);
-				test.log(LogStatus.PASS, "Passed");
-				File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome1 + ".png"));
-				String img = test.addScreenCapture("..\\Screenshots\\" + nome1 + ".png");
-				test.log(LogStatus.PASS, img);
-			} catch (Exception e) {
-				test.log(LogStatus.FAIL, nome1);
-				test.log(LogStatus.FAIL, "FAIL");
-				File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
-				try {
-					FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome1 + ".png"));
-					;
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				String img = test.addScreenCapture("..\\Screenshots\\" + nome1 + ".png");
-				test.log(LogStatus.FAIL, img);
-				test.log(LogStatus.FAIL, e.getMessage());
-				e.printStackTrace();
-				FinalizaClasse();
-				DriverFactory.killDriver();
-				report.endTest(test);
-			}
 	}
+
+	public void click(By by, String nome) {
+		try {
+			getDriver().findElement(by).click();
+			getDriver().manage().timeouts().implicitlyWait(05, TimeUnit.SECONDS);
+			test.log(LogStatus.PASS, nome);
+			test.log(LogStatus.PASS, "Passed");
+			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
+			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
+			test.log(LogStatus.PASS, img);
+		} catch (Exception e) {
+			test.log(LogStatus.FAIL, nome);
+			test.log(LogStatus.FAIL, "FAIL");
+			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
+			try {
+				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
+				;
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
+			test.log(LogStatus.FAIL, img);
+			test.log(LogStatus.FAIL, e.getMessage());
+			e.printStackTrace();
+			FinalizaClasse();
+			DriverFactory.killDriver();
+			report.endTest(test);
+		}
+
+	}
+
+	public void clickAce(String acesso) {
+		
+		try {
+			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
+			getDriver().manage().timeouts().implicitlyWait(05, TimeUnit.SECONDS);
+			test.log(LogStatus.PASS, acesso);
+			test.log(LogStatus.PASS, "Passed");			
+			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + acesso + ".png"));
+			String img = test.addScreenCapture("..\\Screenshots\\" + acesso + ".png");
+			getDriver().findElementByAccessibilityId(acesso).click();
+			test.log(LogStatus.PASS, img);
+			
+		} catch (Exception e) {
+			test.log(LogStatus.FAIL, acesso);
+			test.log(LogStatus.FAIL, "FAIL");
+			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
+			try {
+				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + acesso + ".png"));
+				;
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			String img = test.addScreenCapture("..\\Screenshots\\" + acesso + ".png");
+			test.log(LogStatus.FAIL, img);
+			test.log(LogStatus.FAIL, e.getMessage());
+			e.printStackTrace();
+			FinalizaClasse();
+			DriverFactory.killDriver();
+			report.endTest(test);
+		}
+
+	}
+	
+	//get
+	public String get(By by, String nome) {
+		String texto = null;
+
+		try {
+			texto = getDriver().findElement(by).getText();
+			test.log(LogStatus.PASS, nome);
+			test.log(LogStatus.PASS, "Informação Recuperada: " + texto);
+			test.log(LogStatus.PASS, "Passed");
+			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
+			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
+			test.log(LogStatus.PASS, img);
+
+		} catch (Exception e) {
+			test.log(LogStatus.FAIL, nome);
+			test.log(LogStatus.FAIL, "FAIL");
+			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
+			try {
+				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
+
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
+			test.log(LogStatus.FAIL, img);
+			test.log(LogStatus.FAIL, e.getMessage());
+			e.printStackTrace();
+			FinalizaClasse();
+			DriverFactory.killDriver();
+			report.endTest(test);
+
+		}
+		return texto;
+	}
+
+	//validação
+	public void validacao(By by, String campo, String nome) {
+		try {
+			Assert.assertTrue(nome, true);
+			test.log(LogStatus.PASS, nome);
+			test.log(LogStatus.PASS, "Passed");
+			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
+			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
+			test.log(LogStatus.PASS, img);
+		} catch (Exception e) {
+			test.log(LogStatus.FAIL, nome);
+			test.log(LogStatus.FAIL, "FAIL");
+			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
+			try {
+				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
+				;
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
+			test.log(LogStatus.FAIL, img);
+			test.log(LogStatus.FAIL, e.getMessage());
+			e.printStackTrace();
+			FinalizaClasse();
+			DriverFactory.killDriver();
+			report.endTest(test);
+		}
+
+	}
+
+	public void validacaoCampoVazio(String nome1, String nome2) {
+		try {
+			Assert.assertEquals(nome1, nome2);
+			test.log(LogStatus.PASS, nome1);
+			test.log(LogStatus.PASS, "Passed");
+			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome1 + ".png"));
+			String img = test.addScreenCapture("..\\Screenshots\\" + nome1 + ".png");
+			test.log(LogStatus.PASS, img);
+		} catch (Exception e) {
+			test.log(LogStatus.FAIL, nome1);
+			test.log(LogStatus.FAIL, "FAIL");
+			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
+			try {
+				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome1 + ".png"));
+				;
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			String img = test.addScreenCapture("..\\Screenshots\\" + nome1 + ".png");
+			test.log(LogStatus.FAIL, img);
+			test.log(LogStatus.FAIL, e.getMessage());
+			e.printStackTrace();
+			FinalizaClasse();
+			DriverFactory.killDriver();
+			report.endTest(test);
+		}
+
+	}
+	
 }
