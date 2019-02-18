@@ -29,9 +29,9 @@ public class ContasPage extends BasePage {
 		return nomeFazenda;
 	}
 
-	public void validarResultadoBusca(String campo, String nome) {
-		validacao(By.id("br.com.topinformation.premix:id/tv_name_account"), campo, nome);
-	}
+	/*public void validarResultadoBusca(String campo, String nome) {
+		validacao(campo, nome);
+	}*/
 
 	public void clickBtnPesquisar() {
 		clickBtnPesquisa_enter("Click Pesquisar");

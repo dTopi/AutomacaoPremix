@@ -12,7 +12,7 @@ public class InicioPage extends BasePage {
 	 */
 
 	public void clickBtnDrawer() {
-		click(By.id("br.com.topinformation.premix:id/left_action"), "Click Drawer");
+		clickAccessibility("Click inicio", "Navigate up");
 	}
 
 	

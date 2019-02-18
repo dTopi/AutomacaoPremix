@@ -15,9 +15,7 @@ public class TestEmulador extends BaseTest {
 	@Test
 	public void primeiroTesteEmulator(){
 		statusReport("Emulator" , "testando emulador");
-		drawer.cllickOutraAlterantiva();
 		drawer.clickIncio();
-		drawer.cllickOutraAlterantiva();
 		drawer.clickCompromissos();
 		pesquisar.btnVoltar();
 		inicio.clickBtnDrawer();

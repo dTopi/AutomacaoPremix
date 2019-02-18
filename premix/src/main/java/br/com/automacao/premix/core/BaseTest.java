@@ -1,5 +1,6 @@
 package br.com.automacao.premix.core;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,7 +24,10 @@ public class BaseTest {
 		DriverFactory.killDriver();
 	}
 
-	/*
-	 * @After public void FinalizaApp(){ DriverFactory.getDriver().resetApp(); }
+	
+	/*@After 
+	 public void FinalizaApp(){
+		 DriverFactory.getDriver().resetApp(); 
+		 }
 	 */
 }

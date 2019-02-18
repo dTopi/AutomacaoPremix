@@ -1,16 +1,18 @@
 package br.com.automacao.premix.core;
 
 import static br.com.automacao.premix.core.DriverFactory.getDriver;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.spec.EncodedKeySpec;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.relevantcodes.extentreports.LogStatus;
@@ -19,14 +21,14 @@ import io.appium.java_client.android.AndroidDriver;
 import junit.framework.Assert;
 
 public class BasePage extends BaseTest {
-	WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
+	WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 60);
 
-	//Set
+	// Set
 	public void set(By by, String texto, String nome) {
 		try {
-			getDriver().findElement(by).sendKeys(texto);
 			test.log(LogStatus.PASS, nome);
 			test.log(LogStatus.PASS, "Passed");
+			getDriver().findElement(by).sendKeys(texto);
 			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
 			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
@@ -45,24 +47,26 @@ public class BasePage extends BaseTest {
 			test.log(LogStatus.FAIL, img);
 			test.log(LogStatus.FAIL, e.getMessage());
 			e.printStackTrace();
-			FinalizaClasse();
-			DriverFactory.killDriver();
 			report.endTest(test);
 		}
 
 	}
-	
-	//Click
+
+	// Click
 	public void clickPorTexto(String texto, String nome) {
+
 		try {
-			getDriver().findElement(By.xpath("//*[@text='" + texto + "']")).click();
-			getDriver().manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
-			test.log(LogStatus.PASS, nome);
-			test.log(LogStatus.PASS, "Passed");
+			WebElement element = wait
+					.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@text='" + texto + "']")));
 			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
 			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
+			test.log(LogStatus.PASS, nome);
+			test.log(LogStatus.PASS, "Passed");
+			getDriver().findElement(By.xpath("//*[@text='" + texto + "']")).click();
+			getDriver().manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
 			test.log(LogStatus.PASS, img);
+
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL, nome);
 			test.log(LogStatus.FAIL, "FAIL");
@@ -71,15 +75,14 @@ public class BasePage extends BaseTest {
 				FileUtils.copyFile(scrFile, new File("..\\Screenshots\\" + nome + ".png"));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+
 			}
 			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
-			test.log(LogStatus.PASS, img);
+			test.log(LogStatus.FAIL, img);
 			test.log(LogStatus.FAIL, e.getMessage());
 			e.printStackTrace();
-			FinalizaClasse();
-			DriverFactory.killDriver();
 			report.endTest(test);
+
 		}
 
 	}
@@ -87,13 +90,13 @@ public class BasePage extends BaseTest {
 	public void clickBtnPesquisa_enter(String btn) {
 
 		try {
-
-			((AndroidDriver) DriverFactory.getDriver()).pressKeyCode(66);
 			test.log(LogStatus.PASS, btn);
 			test.log(LogStatus.PASS, "Passed");
 			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + btn + ".png"));
 			String img = test.addScreenCapture("..\\Screenshots\\" + btn + ".png");
+			((AndroidDriver) DriverFactory.getDriver()).pressKeyCode(66);
+			getDriver().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			test.log(LogStatus.PASS, img);
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL, btn);
@@ -105,26 +108,27 @@ public class BasePage extends BaseTest {
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				String img = test.addScreenCapture("..\\Screenshots\\" + btn + ".png");
+				test.log(LogStatus.FAIL, img);
+				test.log(LogStatus.FAIL, e.getMessage());
+				e.printStackTrace();
+				report.endTest(test);
 			}
-			String img = test.addScreenCapture("..\\Screenshots\\" + btn + ".png");
-			test.log(LogStatus.FAIL, img);
-			test.log(LogStatus.FAIL, e.getMessage());
-			e.printStackTrace();
-			FinalizaClasse();
-			DriverFactory.killDriver();
-			report.endTest(test);
+
 		}
+
 	}
 
 	public void click(By by, String nome) {
 		try {
-			getDriver().findElement(by).click();
-			getDriver().manage().timeouts().implicitlyWait(05, TimeUnit.SECONDS);
-			test.log(LogStatus.PASS, nome);
-			test.log(LogStatus.PASS, "Passed");
+			WebElement element = wait.until(ExpectedConditions.elementToBeClickable(by));
 			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
 			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
+			test.log(LogStatus.PASS, nome);
+			test.log(LogStatus.PASS, "Passed");
+			getDriver().findElement(by).click();
+			getDriver().manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
 			test.log(LogStatus.PASS, img);
 		} catch (Exception e) {
 			test.log(LogStatus.FAIL, nome);
@@ -136,53 +140,50 @@ public class BasePage extends BaseTest {
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+
 			}
 			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
 			test.log(LogStatus.FAIL, img);
 			test.log(LogStatus.FAIL, e.getMessage());
 			e.printStackTrace();
-			FinalizaClasse();
-			DriverFactory.killDriver();
 			report.endTest(test);
 		}
 
 	}
 
-	public void clickAce(String acesso) {
-		
+	public void clickAccessibility(String nome, String accessibilityID) {
+
 		try {
 			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
-			getDriver().manage().timeouts().implicitlyWait(05, TimeUnit.SECONDS);
-			test.log(LogStatus.PASS, acesso);
-			test.log(LogStatus.PASS, "Passed");			
-			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + acesso + ".png"));
-			String img = test.addScreenCapture("..\\Screenshots\\" + acesso + ".png");
-			getDriver().findElementByAccessibilityId(acesso).click();
+			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
+			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
+			test.log(LogStatus.PASS, nome);
+			test.log(LogStatus.PASS, "Passed");
+			getDriver().findElementByAccessibilityId(accessibilityID).click();
 			test.log(LogStatus.PASS, img);
-			
+
 		} catch (Exception e) {
-			test.log(LogStatus.FAIL, acesso);
+			test.log(LogStatus.FAIL, nome);
 			test.log(LogStatus.FAIL, "FAIL");
 			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
 			try {
-				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + acesso + ".png"));
-				;
+				FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
+
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+
 			}
-			String img = test.addScreenCapture("..\\Screenshots\\" + acesso + ".png");
+			e.printStackTrace();
+			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
 			test.log(LogStatus.FAIL, img);
 			test.log(LogStatus.FAIL, e.getMessage());
-			e.printStackTrace();
-			FinalizaClasse();
-			DriverFactory.killDriver();
 			report.endTest(test);
 		}
 
 	}
-	
-	//get
+
+	// get
 	public String get(By by, String nome) {
 		String texto = null;
 
@@ -211,20 +212,18 @@ public class BasePage extends BaseTest {
 			test.log(LogStatus.FAIL, img);
 			test.log(LogStatus.FAIL, e.getMessage());
 			e.printStackTrace();
-			FinalizaClasse();
-			DriverFactory.killDriver();
 			report.endTest(test);
 
 		}
 		return texto;
 	}
 
-	//validação
-	public void validacao(By by, String campo, String nome) {
+	// validação
+	public void validacao(String esperado, String recebido,String nome) {
 		try {
-			Assert.assertTrue(nome, true);
+			assertEquals(esperado, recebido);
 			test.log(LogStatus.PASS, nome);
-			test.log(LogStatus.PASS, "Passed");
+			test.log(LogStatus.PASS, "Passed", "Campo 'esperado' deve ser igual campo 'recebido': " + esperado + " = " + recebido);
 			File scrFile = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(scrFile, new File("target\\Screenshots\\" + nome + ".png"));
 			String img = test.addScreenCapture("..\\Screenshots\\" + nome + ".png");
@@ -281,5 +280,5 @@ public class BasePage extends BaseTest {
 		}
 
 	}
-	
+
 }
