@@ -12,6 +12,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>4.12</junit.version>
+	<junit.params.version>1.1.1</junit.params.version>
   </properties>
  <dependencies>
      	<dependency>
@@ -25,16 +27,18 @@
 			<version>5.0.4</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<!-- Dependencia para usar arquivos CSV como massa de dados -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
+			<groupId>pl.pragmatists</groupId>
+			<artifactId>JUnitParams</artifactId>
+			<version>${junit.params.version}</version>
 		</dependency>
 		<dependency>
     		<groupId>com.relevantcodes</groupId>
     		<artifactId>extentreports</artifactId>
     		<version>2.41.2</version>
 		</dependency>
+		
   </dependencies>
 </project>
+  
