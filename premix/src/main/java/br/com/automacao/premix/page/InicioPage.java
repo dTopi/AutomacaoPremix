@@ -12,7 +12,7 @@ public class InicioPage extends BasePage {
 	 */
 
 	public void clickBtnDrawer() {
-		clickAccessibility("Click inicio", "Navigate up");
+		clickAccessibility("Click Drawer", "Navegar para cima");
 	}
 
 	

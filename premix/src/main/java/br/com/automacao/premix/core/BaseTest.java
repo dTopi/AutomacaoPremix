@@ -15,6 +15,7 @@ public class BaseTest {
 	public static void statusReport(String teste, String name) {
 		report = new ExtentReports(System.getProperty("user.dir") + "\\target\\Reports\\" + teste + ".html");
 		test = report.startTest(name);
+		
 	}
 
 	@AfterClass
