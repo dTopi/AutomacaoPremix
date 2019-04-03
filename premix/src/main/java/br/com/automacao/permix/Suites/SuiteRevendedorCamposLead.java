@@ -10,6 +10,6 @@ import br.com.automacao.premix.Leads.test.ValidacaoCampoStatusRevendedor;
 @RunWith(Suite.class)
 @SuiteClasses({ValidacaoCampoStatusRevendedor.class, ValidacaoCampoCargoRevendedor.class})
 
-public class SuiteRevendedorCampos {
+public class SuiteRevendedorCamposLead {
 
 }
