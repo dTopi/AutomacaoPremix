@@ -32,7 +32,10 @@ public class LeadsPage extends BasePage {
 	}
 
 	
-
+	//Set
+	public void setPesquisar(String nome){
+		set(By.id("br.com.topinformation.premix:id/search_bar_text"), nome, "Pesquisar o registro recem criado");
+	}
 	
 	// Validações
 	public void validaNome(String esperado) {

@@ -30,6 +30,9 @@ public class NovoLeadPage extends BasePage{
 	public void clickRelacionamento(){
 		clickPorTexto("Relacionamento", "Click Relacionamentos");
 	}
+	public void clickSalvarNovoLead(){
+		click(By.id("br.com.topinformation.premix:id/action_save_lead"), "Click Salvar");
+	}
 	// ------------------------------------------------
 	// pickList
 		public void selectPicklistStatus(String status) {

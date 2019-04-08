@@ -3,6 +3,7 @@ package br.com.automacao.premix.Leads.test;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import br.com.autmacao.premix.util.ValidacaoSync;
 import br.com.automacao.premix.core.BaseTest;
 import br.com.automacao.premix.page.DrawerPage;
 import br.com.automacao.premix.page.InicioPage;
@@ -18,13 +19,14 @@ public class CriacaoLeadsRevendedorTest extends BaseTest {
 	DrawerPage drawer = new DrawerPage();
 	LeadsPage lead = new LeadsPage();
 	NovoLeadPage novoLead = new NovoLeadPage();
+	ValidacaoSync sync = new ValidacaoSync();
 	
 	@Test
-	@FileParameters(value = "src/resources/revendedor.csv", mapper = CsvWithHeaderMapper.class)
+	@FileParameters(value = "src/resources/revendedor2.csv", mapper = CsvWithHeaderMapper.class)
 	public void cricaoRevendedor(String status, String empresa, String nome, String cargo, String celular, String email,
-			String telefone, String origem, String observacao, String marcaDeNutricao, String cpf, String cnpj, String inscricaoEstadual,
+			String telefone, String origem, String marcaDeNutricao,String observacao, String cpf, String cnpj, String inscricaoEstadual,
 			String qunatidadeTotalAnimais, String quantidadeFazendas, String tipoDeAtividade, String atividadeDaFazenda,
-			String cidadeEntrega, String ufEntrega, String bairroEntrega, String cepEntrega, String roteiroEntrega,
+			String cidadeEntrega,String bairroEntrega, String cepEntrega, String roteiroEntrega,
 			String observacaoEntrega, String cidadeFrete, String nomedaIndicaao, String relacionamento) {
 			
 			  inicio.clickBtnDrawer();
@@ -63,6 +65,10 @@ public class CriacaoLeadsRevendedorTest extends BaseTest {
 			  novoLead.setNomeIndicacao(nomedaIndicaao);
 			  novoLead.clickRelacionamento();
 			  novoLead.selectPickListRelacionamento(relacionamento);
+			  novoLead.clickSalvarNovoLead();
+			  sync.validaLeadSalvo();
+			  lead.setPesquisar(empresa);
+			  
 	}
 
 }
