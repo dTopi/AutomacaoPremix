@@ -15,6 +15,6 @@ public class InicioPage extends BasePage {
 		clickAccessibility("Click Drawer", "Navegar para cima");
 	}
 
-	
+   //"Navegar para cima"	
 
 }

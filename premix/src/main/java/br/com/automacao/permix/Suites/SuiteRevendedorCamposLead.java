@@ -12,4 +12,5 @@ import br.com.automacao.premix.Leads.test.ValidacaoCampoStatusRevendedor;
 
 public class SuiteRevendedorCamposLead {
 
+	
 }

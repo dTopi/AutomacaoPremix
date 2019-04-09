@@ -5,10 +5,14 @@ import org.junit.runner.RunWith;
 
 import br.com.autmacao.premix.util.ValidacaoSync;
 import br.com.automacao.premix.core.BaseTest;
+import br.com.automacao.premix.core.DriverFactory;
 import br.com.automacao.premix.page.DrawerPage;
 import br.com.automacao.premix.page.InicioPage;
 import br.com.automacao.premix.page.LeadsPage;
 import br.com.automacao.premix.page.NovoLeadPage;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
 import junitparams.mappers.CsvWithHeaderMapper;
@@ -22,13 +26,13 @@ public class CriacaoLeadsRevendedorTest extends BaseTest {
 	ValidacaoSync sync = new ValidacaoSync();
 	
 	@Test
-	@FileParameters(value = "src/resources/revendedor2.csv", mapper = CsvWithHeaderMapper.class)
+	@FileParameters(value = "src/resources/revendedor.csv", mapper = CsvWithHeaderMapper.class)
 	public void cricaoRevendedor(String status, String empresa, String nome, String cargo, String celular, String email,
 			String telefone, String origem, String marcaDeNutricao,String observacao, String cpf, String cnpj, String inscricaoEstadual,
 			String qunatidadeTotalAnimais, String quantidadeFazendas, String tipoDeAtividade, String atividadeDaFazenda,
 			String cidadeEntrega,String bairroEntrega, String cepEntrega, String roteiroEntrega,
 			String observacaoEntrega, String cidadeFrete, String nomedaIndicaao, String relacionamento) {
-			
+			  statusReport("Cadastro de Lead", "Revendedor");
 			  inicio.clickBtnDrawer();
 			  drawer.clickLeads();
 			  lead.clickCriarLead();
@@ -37,11 +41,13 @@ public class CriacaoLeadsRevendedorTest extends BaseTest {
 			  novoLead.selectPicklistStatus(status);
 			  novoLead.setEmpresa(empresa);
 			  novoLead.setNome(nome);
+			  scroll(0.4, 0.6);
 			  novoLead.clickCargo();
 			  novoLead.selectPickListCargo(cargo);
 			  novoLead.setCelular(celular);
 			  novoLead.setEmail(email);
 			  novoLead.setTelefone(telefone);
+			  
 			  novoLead.clickOrigem();
 			  novoLead.selectPickListOrigem(origem);
 			  novoLead.setObservacao(observacao);
@@ -70,5 +76,7 @@ public class CriacaoLeadsRevendedorTest extends BaseTest {
 			  lead.setPesquisar(empresa);
 			  
 	}
+
+	
 
 }
