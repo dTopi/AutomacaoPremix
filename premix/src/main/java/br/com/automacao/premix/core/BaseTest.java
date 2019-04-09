@@ -56,6 +56,7 @@ public class BaseTest {
 		 int start_y = (int) (size.height* inicio);
 		 int end_y = (int) (size.height* fim);
 		 new TouchAction(DriverFactory.getDriver())
+		 //.longPress(x, start_y)
 		 .press(x, start_y)
 		 .waitAction(Duration.ofMillis(500))
 		 .moveTo(x, end_y)
