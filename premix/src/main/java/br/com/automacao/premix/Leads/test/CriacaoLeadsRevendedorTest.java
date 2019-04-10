@@ -39,23 +39,11 @@ public class CriacaoLeadsRevendedorTest extends BaseTest {
 			String cidadeEntrega,String bairroEntrega, String cepEntrega, String roteiroEntrega,
 			String observacaoEntrega, String cidadeFrete, String nomedaIndicaao, String relacionamento) {
 			  statusReport("Cadastro de Lead", "Revendedor");
-			  String cidadela = "CURITIBA";
-			  String cidadela2 = "CURITIBA (PR)";
-			  inicio.clickBtnDrawer();
 			  drawer.clickLeads();
 			  lead.clickCriarLead();
 			  lead.clickRevendedor();
 			  novoLead.clickStatus();
 			  novoLead.selectPicklistStatus(status);
-			  novoLead.setCidade(cidadela);
-			  novoLead.selectPicklistCidadeEntrega(cidadela2);
-			  //----------------
-			  //novoLead.setCidade(cidadela);
-			  //novoLead.setBairroEntrega(bairroEntrega);
-			  //scroll(0.2,0.1);
-			  //novoLead.setCep(cepEntrega);
-			  //scroll(0.2,0.1);
-			  //--------------------
 			  novoLead.setEmpresa(empresa);
 			  novoLead.setNome(nome);
 			  scroll(0.2,0.1);
