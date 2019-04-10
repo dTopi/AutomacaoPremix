@@ -11,7 +11,7 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class DriverFactory {
 	public static AndroidDriver<MobileElement> driver;
-
+    
 	public static AndroidDriver<MobileElement> getDriver() {
 		if (driver == null) {
 			createDriver();

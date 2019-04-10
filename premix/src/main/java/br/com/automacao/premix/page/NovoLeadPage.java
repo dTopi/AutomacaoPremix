@@ -5,7 +5,10 @@ import org.openqa.selenium.By;
 import br.com.automacao.premix.core.BasePage;
 
 public class NovoLeadPage extends BasePage{
-     //Click 
+    public void clickteste(){
+    	click(By.id("autoCompleteTextViewCityStatContactDetail"), "Teste");
+    } 
+	//Click 
 	public void clickStatus(){
     	  click(By.className("android.widget.EditText"), "Click Status");
       }
